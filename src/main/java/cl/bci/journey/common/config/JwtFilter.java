@@ -1,5 +1,6 @@
 package cl.bci.journey.common.config;
 
+import cl.bci.journey.common.api.response.JwtTokenResponse;
 import cl.bci.journey.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -13,6 +14,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Component
 @AllArgsConstructor
@@ -25,10 +27,10 @@ public class JwtFilter extends OncePerRequestFilter {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
             try {
-                String username = jwtService.validateToken(token); // Usa tu método aquí
-
+                JwtTokenResponse datos = jwtService.validateToken(token).block();
+                String username = datos.getToken();
                 UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(username, null, List.of());
+                        new UsernamePasswordAuthenticationToken("username", null, List.of());
 
                 SecurityContextHolder.getContext().setAuthentication(authToken);
 

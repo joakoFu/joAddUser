@@ -37,6 +37,7 @@ def projectLibrariesTest =	[
 							]
 dependencies {
 	implementation("org.projectlombok:lombok")
+	implementation ("org.springframework.boot:spring-boot-starter-webflux")
 	annotationProcessor("org.projectlombok:lombok")
 	implementation projectLibreries
 	testImplementation projectLibrariesTest

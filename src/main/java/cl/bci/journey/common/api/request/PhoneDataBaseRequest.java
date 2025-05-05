@@ -1,22 +1,21 @@
 package cl.bci.journey.common.api.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@Data
 @Builder
 @Getter
 @Setter
-public class PhoneRequest {
+@NoArgsConstructor
+@AllArgsConstructor
+public class PhoneDataBaseRequest {
     @JsonProperty("numero")
-    private String number;
+    private String numero;
 
     @JsonProperty("codigoCiudad")
-    private String citycode;
+    private String codigoCiudad;
 
     @JsonProperty("codigoPais")
-    private String countrycode;
-
-
+    private String codigoPais;
 }

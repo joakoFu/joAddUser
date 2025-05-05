@@ -2,55 +2,30 @@ package cl.bci.journey.common.api.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Builder
+@Getter
+@Setter
 public class UserRequest {
-    @JsonProperty("name")
+    @JsonProperty("nombre")
     private String name;
 
-    @JsonProperty("email")
+    @JsonProperty("correo")
+    @Email(message = "Correo electrónico no es válido")
     private String email;
 
-    @JsonProperty("password")
+    @JsonProperty("contraseña")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$", message = "La contraseña debe tener al menos 6 caracteres, incluyendo letras y números.")
     private String password;
 
-    @JsonProperty("phones")
+    @JsonProperty("telefonos")
     private List<PhoneRequest> phones;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$",
-            message = "Invalid email format")
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<PhoneRequest> getPhones() {
-        return phones;
-    }
-
-    public void setPhones(List<PhoneRequest> phones) {
-        this.phones = phones;
-    }
 }

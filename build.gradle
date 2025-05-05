@@ -20,8 +20,6 @@ def projectLibreries = 	[
 							'org.springframework.boot:spring-boot-starter-json',
 							//libreria validador
 							'org.hibernate.validator:hibernate-validator:8.0.1.Final',
-							//libreria mongo
-							'org.springframework.boot:spring-boot-starter-data-mongodb:3.2.5',
 							//Libreria LOG
 							'org.slf4j:slf4j-api:2.0.13',
 							//security
